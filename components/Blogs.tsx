@@ -56,9 +56,9 @@ const Blogs = async ({
         ) : (
           // Jika memang database benar-benar kosong (tidak ada query)
           <>
-            <p className="text-lg font-medium">Belum ada blog.</p>
+            <p className="text-lg font-medium">There is no blog yet.</p>
             <p className="text-sm">
-              Silakan buat blog baru untuk melihat konten di sini.
+              Please make a new blog so you can see here.
             </p>
           </>
         )}
@@ -67,7 +67,7 @@ const Blogs = async ({
   }
 
   return (
-    <div className="max-w-2xl mx-auto grid gap-4">
+    <div className="max-w-2xl mx-auto grid grid-cols-2 gap-4">
       {" "}
       {blogs.map((blog) => (
         <Card key={blog.id} className="rounded-sm border-dashed border-2 flex">

@@ -14,7 +14,6 @@ export default function Search() {
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
 
-    // Setiap kali search berubah, kita reset halaman ke 1
     params.set("page", "1");
 
     if (term) {
