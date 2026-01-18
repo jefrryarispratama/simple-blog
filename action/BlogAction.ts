@@ -1,7 +1,9 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { AddBlogFormSchema, AddBlogFormType } from "@/lib/zodSchemas";
 import { revalidatePath } from "next/cache";
+import z from "zod";
 
 export async function getBlogData(blogId: string) {
   try {
@@ -13,18 +15,30 @@ export async function getBlogData(blogId: string) {
   }
 }
 
-export async function addBlog(data: { title: string; desc: string }) {
-  //perlu di validasi lagi pakek zod
+export async function addBlog(data: AddBlogFormType) {
+  const result = AddBlogFormSchema.safeParse(data);
+
+  if (!result.success) {
+    const formattedErrors = z.treeifyError(result.error);
+
+    return {
+      success: false,
+      errors: formattedErrors,
+      message: "Validation failed",
+    };
+  }
+
   try {
+    const { title, desc } = result.data;
     await prisma.blog.create({
       data: {
-        title: data.title,
-        desc: data.desc,
+        title,
+        desc,
       },
     });
-    return { success: true, message: "blog berhasil di buat" };
+    return { success: true, message: "Blog berhasil dibuat" };
   } catch {
-    return { success: false, message: "blog gagal di buat" };
+    return { success: false, message: "Database Error" };
   }
 }
 

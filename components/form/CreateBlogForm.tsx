@@ -18,14 +18,7 @@ import * as z from "zod";
 import { addBlog } from "@/action/BlogAction";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
-const AddBlogFormSchema = z.object({
-  title: z.string().min(1, { message: "Title is required" }),
-  desc: z
-    .string()
-    .min(1, { message: "Description is required" })
-    .max(500, { message: "The description can't be more than 500 characters" }),
-});
+import { AddBlogFormSchema } from "@/lib/zodSchemas";
 
 type IFormInput = z.infer<typeof AddBlogFormSchema>;
 
