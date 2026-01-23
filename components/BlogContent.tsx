@@ -16,8 +16,8 @@ const BlogPage = async ({
 
   return (
     <div className="mt-12 max-w-2xl mx-auto px-4">
-      <h1 className="text-3xl font-bold">{blog.title}</h1>
-      <p className="mt-4 text-gray-600">{blog.desc}</p>
+      <h1 className="text-3xl font-bold">{blog.title.toString()}</h1>
+      <p className="mt-4 text-gray-600">{blog.desc.toString()}</p>
     </div>
   );
 };

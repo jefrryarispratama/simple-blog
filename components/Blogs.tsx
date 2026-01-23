@@ -85,6 +85,12 @@ const Blogs = async ({
             >
               Details
             </Link>
+            <Link
+              href={`/edit-blog/${blog.id}`}
+              className={buttonVariants({ variant: "secondary", size: "sm" })}
+            >
+              Edit
+            </Link>
             <AlertDeleteDialog id={blog.id} />
           </CardContent>
         </Card>
